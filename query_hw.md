@@ -1,62 +1,62 @@
-<!-- Find all time entries -->
+*Find all time entries* <br>
 
-SELECT *
-FROM time_entries;
+SELECT * <br>
+FROM time_entries; <br>
 
-<!-- Find the developer who joined most recently -->
+*Find the developer who joined most recently* <br>
 
-SELECT MAX(created_at),*
-FROM time_entries;
+SELECT MAX(created_at),* <br>
+FROM time_entries; <br>
 
-<!-- Find the number of projects for each client -->
+*Find the number of projects for each client* <br>
 
-SELECT client_id, COUNT(*) AS project_count
-FROM projects
-GROUP BY client_id;
+SELECT client_id, COUNT(*) AS project_count <br>
+FROM projects <br>
+GROUP BY client_id; <br>
 
-<!-- Find all time entries, and show each one's client name next to it -->
+*Find all time entries, and show each one's client name next to it* <br>
 
-SELECT *
-FROM time_entries JOIN projects
-ON time_entries.project_id = projects.id;
+SELECT * <br>
+FROM time_entries JOIN projects <br>
+ON time_entries.project_id = projects.id; <br>
 
-<!-- Find all developers in the "Ohio sheep" group -->
+*Find all developers in the "Ohio sheep" group* <br>
 
-SELECT developers.name, group_id
-FROM developers
-JOIN group_assignments
-ON group_assignments.developer_id = developers.id
-WHERE group_id = 3;
+SELECT developers.name, group_id <br>
+FROM developers <br>
+JOIN group_assignments <br>
+ON group_assignments.developer_id = developers.id <br>
+WHERE group_id = 3; <br>
 
-<!-- Find the total number of hours worked for each client -->
+*Find the total number of hours worked for each client* <br>
 
-SELECT project_id, SUM(duration) AS total_hours
-FROM time_entries
-GROUP BY project_id;
+SELECT project_id, SUM(duration) AS total_hours <br>
+FROM time_entries <br>
+GROUP BY project_id; <br>
 
-<!-- Find the client for whom Mrs. Lupe Schowalter (the developer) has worked the greatest number of hours -->
+*Find the client for whom Mrs. Lupe Schowalter (the developer) has worked the greatest number of hours* <br>
 
-SELECT developer_id, project_id, SUM(duration) AS hours_worked, name
-FROM time_entries
-JOIN projects ON projects.id = time_entries.project_id
-WHERE developer_id = 28
-GROUP BY project_id 
-ORDER BY duration DESC 
-LIMIT 1;
+SELECT developer_id, project_id, SUM(duration) AS hours_worked, name <br>
+FROM time_entries <br>
+JOIN projects ON projects.id = time_entries.project_id <br>
+WHERE developer_id = 28 <br>
+GROUP BY project_id  <br>
+ORDER BY duration DESC  <br>
+LIMIT 1; <br>
 
-<!-- List all client names with their project names (multiple rows for one client is fine).  Make sure that clients still show up even if they have no projects -->
+*List all client names with their project names (multiple rows for one client is fine).  Make sure that clients still show up even if they have no projects* <br>
 
-SELECT projects.name AS project_name, clients.name AS client_name
-FROM projects
-JOIN clients ON clients.id = projects.client_id;
+SELECT projects.name AS project_name, clients.name AS client_name <br>
+FROM projects <br>
+JOIN clients ON clients.id = projects.client_id; <br>
 
-<!-- Find all developers who have written no comments -->
+*Find all developers who have written no comments* <br>
 
-SELECT developers.name, comments.comment
-FROM developers
-LEFT JOIN comments
-ON comments.developer_id = developers.id
-Where comment IS null
+SELECT developers.name, comments.comment <br>
+FROM developers <br>
+LEFT JOIN comments <br>
+ON comments.developer_id = developers.id <br>
+Where comment IS null <br>
 
 
 
